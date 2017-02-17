@@ -7,6 +7,8 @@ import App from './App';
 import flex from "components/flex/flexDice";
 import animate from "components/animate/animation";
 import css3d from "components/3d/css3d";
+import d3 from "components/d3/d3";
+import controller from "components/flex/controller";
 import 'commons/index.scss';
 // 安装vue-router插件
 Vue.use(VueRouter);
@@ -18,9 +20,10 @@ const router=new VueRouter({
 	linkActiveClass: "active",
 	routes:[
 		{path:'/flex',component:flex},
+		{path:'/d3js',component:d3},
 		{path:'/anmiation',component:animate},
 		{path:'/3D',component:css3d}
-	]
+			]
 });
 
 const app=new Vue({

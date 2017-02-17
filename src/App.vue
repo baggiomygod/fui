@@ -3,11 +3,13 @@
   <v-header :title="propsHeader"></v-header>
   <div class="tab">
     <div class="tab-item" @click="changeHeader"><router-link to="/flex" active-class="active" >{{navTitle[0]}}</router-link></div>
-    <div class="tab-item" @click="changeHeader"><router-link to="/anmiation" active-class="active" >{{navTitle[1]}}</router-link></div>
-    <div class="tab-item" @click="changeHeader"><router-link to="/3D" active-class="active" >{{navTitle[2]}}</router-link></div>
+    <div class="tab-item" @click="changeHeader"><router-link to="/d3js" active-class="active" >{{navTitle[1]}}</router-link></div>
+    <div class="tab-item" @click="changeHeader"><router-link to="/anmiation" active-class="active" >{{navTitle[2]}}</router-link></div>
+    <div class="tab-item" @click="changeHeader"><router-link to="/3D" active-class="active" >{{navTitle[3]}}</router-link></div>
     <!-- <router-view v-bind:flexs="flexs" keep-alive></router-view> -->
-    <router-view  keep-alive></router-view>
+   
   </div>
+   <router-view  keep-alive></router-view>
   </div>
 </template>
 
@@ -22,7 +24,7 @@ export default {
   },
   data() {
     return {
-      navTitle:["flex","animation","css 3d"],
+      navTitle:["flex","D3","animation","css 3d"],
       propsHeader:'flex'
       }
   },
@@ -39,10 +41,12 @@ export default {
 <style lang="scss" type="stylesheet/scss">
   .tab{
      height: 40px;
+     display: flex;
     .tab-item{
         display: inline-block;
         line-height: 40px;
-        width: 33.3%;
+        flex:1;
+        // width: 25%;
         float: left;
         font-weight: 200;
         .active{

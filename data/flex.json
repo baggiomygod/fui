@@ -1,13 +1,22 @@
 {
 		"description":{
 			"firstface": [
-				{"justifyContent": "父元素运用justify-content属性：定义了项目主轴上的对齐方式"},
-				{"alignItems":"父元素运用align-items属性：定义项目在交叉轴上如何对齐"}
+				{"name":"justify-content","feature":"父元素运用justify-content属性：定义了项目主轴上的对齐方式","args":["center","flex-start","flex-end","space-around","space-between"]},
+				{"name":"align-items","feature":"父元素运用align-items属性：定义项目在交叉轴上如何对齐","args":["center","flex-start","flex-end","baseline","stretch"]}
 			],
 			"secondface":[
-				{"justifyContent":"父元素运用justify-content属性：定义了项目主轴上的对齐方式"},
-				{"alignItems":"点运用align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。"
-			}]
+				{"name":"justify-content","feature":"父元素运用justify-content属性：定义了项目主轴上的对齐方式","args":["center","flex-start","flex-end","space-around","space-between"]},
+				{"name":"align-self","feature":"点运用align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。"
+			,"args":["center","flex-start","flex-end","baseline","stretch"]
+				}
+		],
+			"thirdface":[
+				{"name":"justify-content","feature":"父元素运用justify-content属性：定义了项目主轴上的对齐方式","args":["center","flex-start","flex-end","space-around","space-between"]},
+				{"name":"align-self","feature":"点运用align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。"
+			,"args":["center","flex-start","flex-end","baseline","stretch"]
+				},
+				{"name":"align-self","feature":"...","args":["center","flex-start","flex-end","baseline","stretch"]
+				}]
 		},
 		"controller":{
 			"firstface":[

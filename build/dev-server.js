@@ -27,7 +27,7 @@ apiRouters.get('/description',function(req,res){
       data:flexDesc
     })
 });
-apiRouters.get('controller',function(req,res){
+apiRouters.get('/controller',function(req,res){
   res.json({
       errno:0,
       data:flexCtrl
