@@ -1,17 +1,18 @@
 <template>
 	<div id="dices-wrapper" class="dices-main">
 		<ul class="dices-table">
-		<li v-for="(faceStyle,index) in faceStyles" class="dices-li" v-on:click="selectedFace($event,index),currentFace=index" v-bind:id="[faceStyle.id]">
-			<div class="face" v-bind:class="[{active:currentFace==index},faceStyle.numFace]">
-				<div class="face-content" v-bind:class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
-					<span class="pip" v-for="pip in faceStyle.pips" v-bind:class="pip.flexName"></span>
+			<li v-for="(faceStyle,index) in faceStyles" class="dices-li" v-on:click="selectedFace($event,index),currentFace=index" v-bind:id="[faceStyle.id]">
+				<div class="face" v-bind:class="[{active:currentFace==index},faceStyle.numFace]">
+					<div class="face-content" v-bind:class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
+						<span class="pip" v-for="pip in faceStyle.pips" v-bind:class="pip.flexName"></span>
+					</div>
 				</div>
-			</div>
-		</li>
+			</li>
 		</ul>
 		<div class="dices-control">
 			<div class="controller" v-for="(desc,tableIndex) in descriptions">
-				<strong>{{desc.name}}:</strong><span class="text">{{desc.feature}}</span>
+				<strong>{{desc.name}}:</strong>
+				<a class="text">{{desc.feature}}</a>
 				<ul class="controller-checkboxs clearfix" >
 					<li v-on:click="currentIndex=index,currentTable=tableIndex" class="controller-checkbox-item" v-bind:class="{active:index===currentIndex&&tableIndex==currentTable}" v-for="(ctrlValue,index) in desc.args">	
 						<a v-on:click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</a>
@@ -121,14 +122,13 @@
 	}
 </script>
 <style lang="scss" type="stylesheet/scss">
-// @import "../../commons/mixin.scss";
+@import "../../commons/style/mixin.scss";
 .dices-main{
 	display: flex;
 	width: 100%;
 	.dices-table{
 		flex:0 0 90px;
 		box-sizing:border-box;
-		list-style: none;
 		border-right: 1px solid #d7d7d7;
 		-webkit-margin-before: 0;
 	    -webkit-margin-after: 0;
@@ -139,8 +139,8 @@
 						margin: 12px;
 						padding: 4px;
 						background-color: #e7e7e7;
-						width: 52px;
-						height: 52px;
+						width: 1rem;
+						height: 1rem;
 						// object-fit:contain;
 						// -webkit-object-fit:contain;
 						box-shadow: inset 0 2px white,inset 0 -2px #bbb,inset 2px 0 #d7d7d7,inset -2px 0 #d7d7d7;
@@ -153,8 +153,8 @@
 					}
 					.pip{
 						display: block;
-						width: 12px;
-						height: 12px;
+						width: 0.2rem;
+						height: 0.2rem;
 						border-radius: 50%;
 						margin: 4px;
 						background-color: #333;
@@ -242,10 +242,10 @@
 		}
 		.dices-control{
 			flex:1;
-			font-size: 13px;
-			padding: 3px;
+			padding: 5px;
 			.text{
 				text-align: left;
+				@include font-dpr(12px);
 			}
 			.controller-checkboxs{
 				list-style: none;

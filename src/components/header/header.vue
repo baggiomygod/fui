@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1 class="header-flex">{{header.name}}</h1>
+    <h1 class="header-flex">{{title}}</h1>
   </header>
 </template>
 
@@ -10,13 +10,6 @@ export default {
   props:{
     "title":{
       type:String
-    }
-  },
-  data () {
-    return {
-      header: {
-        name:this.title
-      }
     }
   }
 }
@@ -30,6 +23,9 @@ header{
 h1, h2 {
   font-weight: normal;
   text-align: center;
+}
+.header-flex{
+  font-size: 1rem;
 }
 
 </style>

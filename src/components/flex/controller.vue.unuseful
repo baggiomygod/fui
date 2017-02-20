@@ -1,10 +1,11 @@
 <template>
 		<div class="controller">
 			<div v-for="(desc,tableIndex) in descriptions">
-				<strong>{{desc.name}}:</strong><span class="text">{{desc.feature}}</span>
+				<strong class="text">{{desc.name}}:</strong>
+				<span class="text">{{desc.feature}}</span>
 				<ul class="controller-checkboxs clearfix" >
 					<li v-on:click="currentIndex=index,currentTable=tableIndex" class="controller-checkbox-item" v-bind:class="{active:index===currentIndex&&tableIndex==currentTable}" v-for="(ctrlValue,index) in desc.args">	
-						<a v-on:click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</a>
+						<a class="text" v-on:click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</a>
 					</li>
 				</ul>
 			</div>
@@ -48,13 +49,13 @@
 	}
 </script>
 <style lang="scss" type="stylesheet/scss">
+		@import "../../commons/style/mixin.scss";
 		.controller{
-			
 			.text{
 				text-align: left;
+				@include font-dpr(12px);
 			}
 			.controller-checkboxs{
-				list-style: none;
 				.controller-checkbox-item{
 					display: inline-block;
 					border: 1px solid #e7e7e7;

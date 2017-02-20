@@ -19,6 +19,10 @@ var app = express()
 var flexData=require('../data/flex.json');
 var flexDesc=flexData.description;
 var flexCtrl=flexData.controller;
+
+//d3.json
+var d3Data=require('../data/d3.json');
+
 // 设置路由
 var apiRouters=express.Router();
 apiRouters.get('/description',function(req,res){
@@ -33,6 +37,13 @@ apiRouters.get('/controller',function(req,res){
       data:flexCtrl
   })
 });
+
+apiRouters.get('/d3',function(req,res){
+  res.json({
+    errno:0,
+    data:d3Data
+  })
+})
 app.use('/api',apiRouters);
 
 

@@ -8,8 +8,8 @@ import flex from "components/flex/flexDice";
 import animate from "components/animate/animation";
 import css3d from "components/3d/css3d";
 import d3 from "components/d3/d3";
-import controller from "components/flex/controller";
-import 'commons/index.scss';
+// import controller from "components/flex/controller";
+import 'commons/style/index.scss';
 // 安装vue-router插件
 Vue.use(VueRouter);
 Vue.use(VueResource);
