@@ -1,6 +1,6 @@
 <template>
 	<div id="dices-wrapper" class="dices-main">
-		<ul class="dices-table">
+		<ul class="dices-table menu-margin-before">
 			<li v-for="(faceStyle,index) in faceStyles" class="dices-li" v-on:click="selectedFace($event,index),currentFace=index" v-bind:id="[faceStyle.id]">
 				<div class="face" v-bind:class="[{active:currentFace==index},faceStyle.numFace]">
 					<div class="face-content" v-bind:class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
@@ -130,9 +130,9 @@
 		flex:0 0 90px;
 		box-sizing:border-box;
 		border-right: 1px solid #d7d7d7;
-		-webkit-margin-before: 0;
-	    -webkit-margin-after: 0;
-	    -webkit-padding-start: 0;
+		// -webkit-margin-before: 0;
+	 //    -webkit-margin-after: 0;
+	 //    -webkit-padding-start: 0;
 		.dices-li{
 			border-bottom: 1px solid #d7d7d7;
 			[class$="face"]{
@@ -158,7 +158,7 @@
 						border-radius: 50%;
 						margin: 4px;
 						background-color: #333;
-						box-shadow: inset 0 3px #111,inset 0 -3px #555;
+						box-shadow: inset 0 0.1rem #111,inset 0 -0.1rem #555;
 					}
 					.active{
 					    	background-color: #d3c8c8;
