@@ -2,21 +2,23 @@
     <div id="d3-wrapper" class="d3-wrapper">
         <div class="d3-menu-wrapper" ref="menuWrapper">
             <ul class="menu-list menu-margin-before">
-                <li class="list-item" v-for="(d3menu,index) in d3Menus" :class="{'current':currentMenuIndex===index}">
+                <li class="list-item" v-for="(d3menu,index) in d3Menus" :class="{'current':currentIndex===index}">
                     <a>{{d3menu.name}}</a></li>
             </ul>
         </div>
         <div class="d3-charts-wrapper" ref="chartWrapper">
             <ul class="chart-list menu-margin-before">
                 <li v-for="chart in d3Menus" class="chart-item" ref="chartList" >{{chart.name}}
-                    <div class="chart-container"></div>
+                    <div class="chart-container" ref="chartContainer"></div>
                 </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
-import D3 from 'd3';
+import * as d3 from 'd3'; // 引入d3方法1：模块整体加载
+// let d3 = require('d3'); // 引入d3方法2    ps.使用import d3 from d3会报错，为何？
+
 import VueD3 from 'vue-d3';
 import BScroll from 'better-scroll';
 const ERR_OK = 0;
@@ -25,11 +27,12 @@ export default {
             return {
                 d3Menus: [],
                 listHeight: [],
-                scrollY: 0
+                scrollY: 0,
+                rectData:[180,200,170,20,180,50,90]
             }
         },
         computed: {
-            currentMenuIndex() {
+            currentIndex() {
                 for (let i = 0; i < this.listHeight.length; i++) {
                     let height1 = this.listHeight[i];
                     let height2 = this.listHeight[i + 1];
@@ -47,21 +50,60 @@ export default {
                     console.log(response);
                     this.d3Menus = response.data;
                     // 当要操作DOM或计算和DOM 相关的东西时时，要保证DOM已经渲染
-                    //将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
                     this.$nextTick(() => {
                         this._initScroll();
-                        this._initD3Chart();
                         this._calculateHeight();
+                        this._initD3Chart();
                     });
                 }
             });
         },
+        // keep-alive 组件激活时调用。
+        // activated() {
+        //     this._initScroll();
+        // },
         methods: {
             _initD3Chart() {
-                console.log('d3...');
-                // this.$d3.select(".chart-container");
+                console.log(d3);
+                // let width = '7rem';
+                let width = 450;
+                let height = 450;
+                let linear = d3.scaleLinear()
+                                    .domain([0,d3.max(this.rectData)])
+                                    .range([0,200]);
+                                    // .range([0,'5rem']); // 使用rem单位时坐标轴会乱码
+                let svg=d3.select(this.$refs.chartContainer[0])
+                            .append('svg')
+                            .attr('width','7rem')
+                            .attr('height',height)
+                            .style('background-Color','#fff');
+                let rectHeight = 45;
+
+                svg.selectAll('rect')
+                    .data(this.rectData)
+                    .enter()
+                    .append('rect')
+                    .attr('x',20) // 相对svg x轴偏移20
+                    .attr('y',(data,i) => { // 相对svg Y轴（顶部）
+                        return 70+i * rectHeight;
+                    })
+                    .attr('width',(data) => {
+                        return linear(data);
+                    })
+                    .attr('height',rectHeight-5)
+                    .attr('fill','steelblue');//填充色
+
+                    // 坐标轴
+                    let xAxis = d3.axisBottom(linear)
+                                    .tickSize(2) // 标注样式
+                                    .ticks(5);// 坐标标注数
+                    svg.append('g')
+                        .attr('class','rect-axis')
+                        .attr('transform','translate(20,400)')// x y 位置
+                        .call(xAxis);
             },
-            _initScroll(){
+            _initScroll() {
+                console.log('scroll....');
                 this.meunScroll = new BScroll(this.$refs.menuWrapper,{
                     click: true
                 });
@@ -76,6 +118,7 @@ export default {
             },
             //计算高度
             _calculateHeight() {
+                console.log(this.$refs.chartList[0].clientHeight);
                 let chartList = this.$refs.chartList;
                 let height = 0;
                 this.listHeight.push(height);
@@ -105,8 +148,7 @@ export default {
                     box-sizing:border-box; 
                     font-size: 0.4rem; 
                     padding:15px 0; 
-                    margin:0 15px; 
-                    border-bottom:1px solid #c29d9d; 
+                    border-bottom:1px solid rgba(7,17,27,0.1); 
                     &.current{ 
                         background-color: #fff; 
                         font-weight: 700; 
@@ -119,9 +161,19 @@ export default {
             .chart-list{ 
                     background-color:#e2e2e2; 
                     .chart-item{ 
-                        height: 300px;
+                        height: 500px;
                         border-bottom: 1px solid #666;
                         padding:5px;
+                        .rect-axis path,
+                        .rect-axis line{
+                                fill:none;
+                                stroke:black;
+                                shape-rendering:crispEdges;
+                        }
+                        .rect-axis text {
+                            font-family: sans-serif;
+                            font-size: 0.2rem;
+                        }
                     } 
                 } 
             

@@ -24,8 +24,8 @@ export default {
   },
   data() { 
     return {
-      navTitle:["flex","D3","animation","css 3d"],
-      propsHeader:'Flex'
+      navTitle:["flex","d3.js","animation","css 3d"],
+      propsHeader:'d3'
       }
   },
   methods:{

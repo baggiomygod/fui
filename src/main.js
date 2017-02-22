@@ -34,4 +34,4 @@ const app=new Vue({
 	// components:{App}
 });
 // 打开的默认路径
-router.push('/flex');
+router.push('/d3js');
