@@ -8,8 +8,9 @@
         </div>
         <div class="d3-charts-wrapper" ref="chartWrapper">
             <ul class="chart-list menu-margin-before">
+                
                 <li v-for="chart in d3Menus" class="chart-item" ref="chartList" >{{chart.name}}
-                    <div class="chart-container" ref="chartContainer"></div>
+                    <div class="chart-container" ref="chartsContainer"></div>
                 </li>
             </ul>
         </div>
@@ -18,8 +19,7 @@
 <script>
 import * as d3 from 'd3'; // 引入d3方法1：模块整体加载
 // let d3 = require('d3'); // 引入d3方法2    ps.使用import d3 from d3会报错，为何？
-
-import VueD3 from 'vue-d3';
+import rect from 'components/d3/componentOfD3/rect';
 import BScroll from 'better-scroll';
 const ERR_OK = 0;
 export default {
@@ -72,7 +72,7 @@ export default {
                                     .domain([0,d3.max(this.rectData)])
                                     .range([0,200]);
                                     // .range([0,'5rem']); // 使用rem单位时坐标轴会乱码
-                let svg=d3.select(this.$refs.chartContainer[0])
+                let svg=d3.select(this.$refs.chartsContainer[0])
                             .append('svg')
                             .attr('width','7rem')
                             .attr('height',height)
