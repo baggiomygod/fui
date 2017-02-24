@@ -1,18 +1,30 @@
 [{
-    "name": "rect d3"
+    "name": "rect",
+    "id":0,
+    "type":"rect"
 }, {
-    "name": "柱状图"
+    "name": "bar",
+    "id":1,
+    "type":"rect"
 }, {
-    "name": "折线图"
+    "name": "line",
+    "id":2,
+    "type":"rect"
 }, {
-    "name": "饼图"
+    "name": "pie",
+    "id":3,
+    "type":"rect"
 }, {
-    "name": "趋势图"
+    "name": "trend",
+    "id":4,
+    "type":"rect"
 }, {
-    "name": "散点图"
+    "name": "point",
+    "id":5,
+    "type":"rect"
 }, {
-    "name": "D3"
-},{
-    "name": "D3"
+    "name": "D3",
+    "id":6,
+    "type":"rect"
 }
 ]

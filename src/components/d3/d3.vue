@@ -8,18 +8,17 @@
         </div>
         <div class="d3-charts-wrapper" ref="chartWrapper">
             <ul class="chart-list menu-margin-before">
-                
-                <li v-for="chart in d3Menus" class="chart-item" ref="chartList" >{{chart.name}}
-                    <div class="chart-container" ref="chartsContainer"></div>
+                <li v-for="(chart,index) in d3Menus" class="chart-item" ref="chartList" >{{chart.name}}---{{index}}
+                    <d3charts :index="chart.id"></d3charts>
                 </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
-import * as d3 from 'd3'; // 引入d3方法1：模块整体加载
+// import * as d3 from 'd3'; // 引入d3方法1：模块整体加载
 // let d3 = require('d3'); // 引入d3方法2    ps.使用import d3 from d3会报错，为何？
-import rect from 'components/d3/componentOfD3/rect';
+import d3charts from 'components/d3/componentOfD3/d3charts';
 import BScroll from 'better-scroll';
 const ERR_OK = 0;
 export default {
@@ -28,7 +27,8 @@ export default {
                 d3Menus: [],
                 listHeight: [],
                 scrollY: 0,
-                rectData:[180,200,170,20,180,50,90]
+                rectData:[180,200,170,20,180,50,90],
+                chartIndex:0
             }
         },
         computed: {
@@ -47,13 +47,13 @@ export default {
             this.$http.get('/api/d3').then((response) => {
                 response = response.body;
                 if (response.errno == ERR_OK) {
-                    console.log(response);
+                    console.log("获取的数据:");console.log(response);
                     this.d3Menus = response.data;
                     // 当要操作DOM或计算和DOM 相关的东西时时，要保证DOM已经渲染
                     this.$nextTick(() => {
                         this._initScroll();
                         this._calculateHeight();
-                        this._initD3Chart();
+                        // this._initD3Chart();
                     });
                 }
             });
@@ -65,16 +65,15 @@ export default {
         methods: {
             _initD3Chart() {
                 console.log(d3);
-                // let width = '7rem';
-                let width = 450;
+                let width = '7rem';
                 let height = 450;
                 let linear = d3.scaleLinear()
                                     .domain([0,d3.max(this.rectData)])
                                     .range([0,200]);
-                                    // .range([0,'5rem']); // 使用rem单位时坐标轴会乱码
+                                    // .range([0,'6rem']); // 使用rem单位时坐标轴会乱码
                 let svg=d3.select(this.$refs.chartsContainer[0])
                             .append('svg')
-                            .attr('width','7rem')
+                            .attr('width',width)
                             .attr('height',height)
                             .style('background-Color','#fff');
                 let rectHeight = 45;
@@ -103,7 +102,6 @@ export default {
                         .call(xAxis);
             },
             _initScroll() {
-                console.log('scroll....');
                 this.meunScroll = new BScroll(this.$refs.menuWrapper,{
                     click: true
                 });
@@ -118,7 +116,6 @@ export default {
             },
             //计算高度
             _calculateHeight() {
-                console.log(this.$refs.chartList[0].clientHeight);
                 let chartList = this.$refs.chartList;
                 let height = 0;
                 this.listHeight.push(height);
@@ -128,6 +125,9 @@ export default {
                     this.listHeight.push(height);
                 }
             }
+        },
+        components:{
+            d3charts
         }
 }
 </script>
