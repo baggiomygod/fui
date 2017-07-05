@@ -26,7 +26,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'commons': path.resolve(__dirname, '../src/commons'),
-      'components': path.resolve(__dirname, '../src/components')
+      'view': path.resolve(__dirname, '../src/view'),
+      'static':path.resolve(__dirname,'../static')
     }
   },
   resolveLoader: {
@@ -43,6 +44,10 @@ module.exports = {
         loader: 'babel',
         include: projectRoot,
         exclude: /node_modules/
+      },
+      { // .vue ---> .html+.js
+          test:/\.html$/,
+          loader:'vue-html'
       },
       {
         test: /\.json$/,

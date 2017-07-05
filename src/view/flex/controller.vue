@@ -1,11 +1,15 @@
 <template>
 		<div class="controller">
-			<div v-for="(desc,tableIndex) in descriptions">
+			<div v-for="(desc,tableIndex) in descriptions" :key="desc">
 				<strong class="text">{{desc.name}}:</strong>
 				<span class="text">{{desc.feature}}</span>
 				<ul class="controller-checkboxs clearfix" >
-					<li v-on:click="currentIndex=index,currentTable=tableIndex" class="controller-checkbox-item" v-bind:class="{active:index===currentIndex&&tableIndex==currentTable}" v-for="(ctrlValue,index) in desc.args">	
-						<a class="text" v-on:click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</a>
+					<li @click="currentIndex=index,currentTable=tableIndex" 
+						class="controller-checkbox-item" 
+						:class="{active:index===currentIndex&&tableIndex==currentTable}" 
+						v-for="(ctrlValue,index) in desc.args"
+						:key="ctrlValue">
+						<p class="text" @click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</p>
 					</li>
 				</ul>
 			</div>

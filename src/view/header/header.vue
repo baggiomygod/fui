@@ -7,9 +7,9 @@
 <script>
 export default {
   name: 'header',
-  props:{
-    "title":{
-      type:String
+  props: {
+    "title": {
+      type: String
     }
   }
 }
@@ -17,19 +17,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.app-header{
+.app-header {
   position: relative;
   overflow: hidden;
-  padding: 0.5rem 0;
-  background-color: rgbs(7,17,27,0.8);
-  .header-flex{
-  font-size: 1rem;
+  /*padding: 10px 0;*/
+  height: 1.5rem;
+  background-color: #3e98f0;
+  .header-flex {
+    font-size: 1rem;
+  }
 }
-}
-h1, h2 {
+
+h1,
+h2 {
+  line-height: 1.5rem;
   font-weight: normal;
   text-align: center;
+  color: #fff;
 }
-
-
 </style>
