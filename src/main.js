@@ -9,6 +9,8 @@ import animate from "view/animate/animation";
 import css3d from "view/3d/css3d";
 import d3 from "view/d3/d3";
 import vue2 from "view/vue2/vue2";
+import pwa from "view/pwa/pwa";
+import search from "view/search/search";
 import 'commons/style/index.scss';
 import './main.scss';
 import 'static/css/icon_font/iconfont.css';// 引入图标库
@@ -25,7 +27,9 @@ const router=new VueRouter({
 		{path:'/d3js',component:d3},
 		{path:'/anmiation',component:animate},
 		{path:'/3D',component:css3d},
-		{path:'/vue2',component:vue2}
+		{path:'/vue2',component:vue2},
+		{path:'/pwa',component:pwa},
+		{path:'/search',component:search}
 			]
 		});
 

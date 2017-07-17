@@ -1,28 +1,33 @@
 <template>
 	<div id="dices-wrapper" class="dices-main container-wrap">
-		<ul class="dices-table menu-margin-before">
-			<li v-for="(faceStyle,index) in faceStyles" :key="faceStyle" class="dices-li" @click="selectedFace($event,index),currentFace=index" :id="[faceStyle.id]">
-				<div class="face" :class="[{active:currentFace==index},faceStyle.numFace]">
-					<div class="face-content" :class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
-						<span class="pip" v-for="pip in faceStyle.pips" :class="pip.flexName" :key="pip"></span>
+		<div class="dices-table" ref="menuWrapper">
+			<ul class="menu-margin-before">
+				<li v-for="(faceStyle,index) in faceStyles" :key="faceStyle" class="dices-li" :class="{active:currentFace==index}" @click.stop="selectedFace($event,index),currentFace=index" :id="[faceStyle.id]">
+					<div class="face" :class="faceStyle.numFace">
+						<div class="face-content" :class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
+							<span class="pip" v-for="pip in faceStyle.pips" :class="pip.flexName" :key="pip"></span>
+						</div>
 					</div>
-				</div>
-			</li>
-		</ul>
-		<div class="dices-control">
-			<div class="controller" v-for="(desc,tableIndex) in descriptions" :key="desc">
-				<strong>{{desc.name}}:</strong>
-				<a class="text">{{desc.feature}}</a>
-				<ul class="controller-checkboxs clearfix">
-					<li @click="currentIndex=index,currentTable=tableIndex" class="controller-checkbox-item" :class="{active:index===currentIndex&&tableIndex==currentTable}" v-for="(ctrlValue,index) in desc.args" :key="ctrlValue">
-						<p @click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</p>
-					</li>
-				</ul>
-			</div>
+				</li>
+			</ul>
+		</div>
+		<div class="dices-control" ref="controlWrap">
+			<ul class="controller">
+				<li v-for="(desc,tableIndex) in descriptions" :key="desc">
+					<strong>{{desc.name}}:</strong>
+					<a class="text">{{desc.feature}}</a>
+					<ul class="controller-checkboxs clearfix">
+						<li @click="currentIndex=index,currentTable=tableIndex" class="controller-checkbox-item" :class="{active:index===currentIndex&&tableIndex==currentTable}" v-for="(ctrlValue,index) in desc.args" :key="ctrlValue">
+							<p @click="changeFlex(tableIndex,index,$event)">{{ctrlValue}}</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
 <script>
+import BScroll from 'better-scroll';
 const ERR_OK = 0;
 export default {
 	data() {
@@ -35,23 +40,48 @@ export default {
 			faceId: "firstface",
 			faceStyles: [
 				{
+					"type": "saizi",
 					"id": "firstface",
 					"numFace": "first-face",
 					"styleContent": { "justify": "j-center", "alignItems": "i-center" },
 					"pips": [{ "flexName": "" }]
 				},
 				{
+					"type": "saizi",
 					"id": "secondface",
 					"numFace": "second-face",
 					"styleContent": { "justify": "j-space-between", "alignItems": "" },
 					"pips": [{ "flexName": "" }, { "flexName": "s-flex-end" }]
 				},
 				{
+					"type": "saizi",
 					"id": "thirdface",
 					"numFace": "third-face",
 					"styleContent": { "justify": "j-space-between", "alignItems": "" },
 					"pips": [{ "flexName": "" }, { "flexName": "s-center" }, { "flexName": "s-flex-end" }]
-				}
+				},
+				{
+					"type": "saizi",
+					"id": "fourface",
+					"numFace": "four-face",
+					"styleContent": { "justify": "j-space-between", "alignItems": "" },
+					"pips": [{ "flexName": "" }, { "flexName": "s-center" }, { "flexName": "s-flex-start" }, { "flexName": "s-flex-end" }]
+				},
+				{
+					"type": "saizi",
+					"id": "fiveface",
+					"numFace": "five-face",
+					"styleContent": { "justify": "flex-justify-flow", "alignItems": "" },
+					"pips": [{ "flexName": "" }, { "flexName": "" }, { "flexName": "" }, { "flexName": "" }, { "flexName": "" }]
+				},
+				{
+					"type": "saizi",
+					"id": "fiveface",
+					"numFace": "five-face",
+					"styleContent": { "justify": "flex-justify-flow-nowrap", "alignItems": "" },
+					"pips": [{ "flexName": "" }, { "flexName": "" }, { "flexName": "" },{ "flexName": "" },{ "flexName": "" },{ "flexName": "" }]
+				},
+
 			]
 
 		}
@@ -61,9 +91,14 @@ export default {
 			response = response.body;
 			if (response.errno == ERR_OK) {
 				this.descriptions = response.data[this.faceId];
+				this.$nextTick(() => {
+					this._initScroll();
+				});
 			}
-
 		});
+	},
+	activated() {
+		this._initScroll();
 	},
 	methods: {
 		changeFlex(tableIndex, index, e) {
@@ -71,31 +106,24 @@ export default {
 			switch (this.faceId) {
 				case 'firstface':
 					if (tableIndex == 0) {
-						console.log(tableIndex + "-" + index + "-" + selectedText);
 						this.faceStyles[0].styleContent.justify = "j-" + selectedText;
 					} else {
-						console.log(tableIndex + ":i-" + selectedText);
 						this.faceStyles[0].styleContent.alignItems = "i-" + selectedText;
 					}
 					break;
 				case 'secondface':
 					if (tableIndex == 0) {
-						console.log(tableIndex + "-" + index + "-" + selectedText);
 						this.faceStyles[1].styleContent.justify = "j-" + selectedText;
 					} else {
-						console.log(tableIndex + ":s-" + selectedText);
 						this.faceStyles[1].pips[1].flexName = "s-" + selectedText;
 					}
 					break;
 				case 'thirdface':
 					if (tableIndex == 0) {
-						console.log(tableIndex + "-" + index + "-" + selectedText);
 						this.faceStyles[2].styleContent.justify = "j-" + selectedText;
 					} else if (tableIndex == 1) {
-						console.log(tableIndex + ":s-" + selectedText);
 						this.faceStyles[2].pips[1].flexName = "s-" + selectedText;
 					} else {
-						console.log(tableIndex + ":s-" + selectedText);
 						this.faceStyles[2].pips[2].flexName = "s-" + selectedText;
 					}
 					break;
@@ -104,7 +132,11 @@ export default {
 
 
 		},
-		selectedFace(e, index, currentIndex) {
+		selectedFace(e, index) {
+			if (!e._constructed) {
+				return;
+			}
+			console.log(e._constructed);
 			let currentFace = e.currentTarget;
 			let currentFaceId = currentFace.getAttribute('id');
 			this.faceId = currentFaceId;
@@ -114,10 +146,18 @@ export default {
 					this.descriptions = response.data[this.faceId];
 				}
 			});
-
-			console.log(index);
-			console.log(currentIndex);
-		}
+		},
+		_initScroll() {
+			this.meunScroll = new BScroll(this.$refs.menuWrapper, {
+				click: true
+			});
+			this.controlScroll = new BScroll(this.$refs.controlWrap, {
+				click: true
+			});
+			// this.controlScroll.on('scroll', (pos) => {
+			//     this.scrollY = Math.abs(Math.round(pos.y));
+			// })
+		},
 	}
 }
 </script>
@@ -125,20 +165,24 @@ export default {
 @import "../../commons/style/mixin.scss";
 .dices-main {
 	display: flex;
+	display: -webkit-flex;
+	bottom: 0; // height: 100%;
+	overflow: hidden;
 	.dices-table {
-		flex: 0 0 90px;
-		box-sizing: border-box;
-		border-right: 1px solid #d7d7d7; // -webkit-margin-before: 0;
-		//    -webkit-margin-after: 0;
-		//    -webkit-padding-start: 0;
+		flex: 0 0 2rem; // box-sizing: border-box;
 		.dices-li {
 			border-bottom: 1px solid #d7d7d7;
+			height: 2rem;
+			padding: 5px; // box-shadow: 0 2px 1px rgba(103, 188, 214, 1);
+			&.active {
+				background-color: #cdf1f7;
+			}
 			[class$="face"] {
 				margin: 12px;
 				padding: 4px;
 				background-color: #e7e7e7;
-				width: 1rem;
-				height: 1rem; // object-fit:contain;
+				width: 1.7rem;
+				height: 1.7rem; // object-fit:contain;
 				// -webkit-object-fit:contain;
 				box-shadow: inset 0 2px white, inset 0 -2px #bbb, inset 2px 0 #d7d7d7, inset -2px 0 #d7d7d7;
 				border-radius: 10%;
@@ -149,19 +193,17 @@ export default {
 			}
 			.pip {
 				display: block;
-				width: 0.2rem;
-				height: 0.2rem;
+				width: 0.3rem;
+				height: 0.3rem;
 				border-radius: 50%;
 				margin: 4px;
 				background-color: #333;
-				box-shadow: inset 0 0.1rem #111, inset 0 -0.1rem #555;
-			}
-			.active {
-				background-color: #d3c8c8;
+				box-shadow: inset 0 0.2rem #111, inset 0 -0.2rem #555;
 			}
 			.first-face {
 				.face-content {
 					display: flex; // justify-content
+					display: -webkit-flex;
 					&.j-center {
 						justify-content: center;
 					}
@@ -195,9 +237,11 @@ export default {
 				}
 			}
 			.second-face,
-			.third-face {
+			.third-face,
+			.four-face {
 				.face-content {
 					display: flex;
+					display: -webkit-flex;
 					&.j-center {
 						justify-content: center;
 					}
@@ -232,16 +276,37 @@ export default {
 					}
 				}
 			}
+			.five-face {
+				.face-content {
+				display: flex;
+				display: -webkit-flex;
+				&.flex-justify-flow {
+					justify-content: space-between;
+					flex-flow: row wrap; // 横向 换行
+				}
+				&.flex-justify-flow-nowrap{
+					justify-content: space-between;
+					flex-flow: row nowrap; // 横向 换行
+				}
+				}
+			}
+
+			.property-name {
+				margin: 12px;
+				padding: 4px;
+			}
 		}
 	}
 	.dices-control {
 		flex: 1;
 		padding: 15px;
+		background-color: #cdf1f7;
 		.text {
 			text-align: left;
 			@include font-dpr(12px);
 		}
 		.controller-checkboxs {
+			padding-bottom: 1rem;
 			list-style: none;
 			.controller-checkbox-item {
 				display: inline-block;
@@ -249,7 +314,6 @@ export default {
 				background-color: #eee;
 				padding: 3px;
 				margin: 3px;
-				float: left;
 				&.active {
 					background-color: #d7d7d7;
 					text-decoration: none

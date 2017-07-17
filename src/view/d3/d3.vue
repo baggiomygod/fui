@@ -9,16 +9,16 @@
         </div>
         <div class="d3-charts-wrapper" ref="chartWrapper">
             <ul class="chart-list menu-margin-before" ref="chartList">
-                <li class="chart-item">
+                <li class="chart-item chart-item-hook">
                     <d-rect></d-rect>
                 </li>
-                <li class="chart-item">
+                <li class="chart-item  chart-item-hook">
                     <d-rect></d-rect>
                 </li>
-                <li class="chart-item">
+                <li class="chart-item  chart-item-hook">
                     <d-rect></d-rect>
                 </li>
-                <li class="chart-item">
+                <li class="chart-item  chart-item-hook">
                     <d-rect></d-rect>
                 </li>
             </ul>
@@ -26,10 +26,9 @@
     </div>
 </template>
 <script>
-import * as d3 from 'd3'; // 引入d3方法1：模块整体加载
-// let d3 = require('d3'); // 引入d3方法2    ps.使用import d3 from d3会报错，为何？
-import rect from 'view/d3/componentOfD3/rect';
 import BScroll from 'better-scroll';
+import rect from 'view/d3/componentOfD3/rect';
+
 const ERR_OK = 0;
 export default {
     data() {
@@ -73,7 +72,6 @@ export default {
     activated() {
         this._initScroll();
         this._calculateHeight();
-
     },
     methods: {
         _initScroll() {
@@ -105,11 +103,9 @@ export default {
             if (!event._constructed) {
                 return;
             }
-            let targetList=this.$refs.chartList.children;
-            this.chartScroll.scrollToElement(targetList[index], 300);
-                        // this.chartScroll.on('scroll', (pos) => {
-            //     this.scrollY = Math.abs(Math.round(pos.y));
-            // })
+            let chartsList=this.$refs.chartList.children;
+            let targetList=chartsList[index]
+            this.chartScroll.scrollToElement(targetList, 300);
         }
     }
 }
@@ -118,18 +114,17 @@ export default {
 .d3-wrapper {
     background-color: #cdf1f7;
     display: flex;
+    display: -webkit-flex;
     bottom: 0;
     overflow: hidden;
     .d3-menu-wrapper {
         flex: 0 0 2rem;
-        width: 2rem;
         background-color: #fff;
         .menu-list {
             .list-item {
                 box-sizing: border-box;
                 font-size: 0.4rem;
                 padding: 15px 0;
-                box-shadow: 0 2px 1px rgba(103, 188, 214, 0.1);
                 &.active {
                     background-color: #cdf1f7;
                     font-weight: 700;
@@ -143,7 +138,7 @@ export default {
             background-color: #cdf1f7;
             .chart-item {
                 height: 500px;
-                padding: 20px;
+                padding: 10px;
                 .chart-container {
                     svg {
                         background-color: #eee;

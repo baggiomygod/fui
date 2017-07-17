@@ -24,6 +24,7 @@
 .animate-wrapper{
   .img-wrap{
     display: flex;
+    display: -webkit-flex;
   }
 }
 

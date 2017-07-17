@@ -1,8 +1,8 @@
-import tpl from './scrollMenus.html';
-import './scrollMenus.scss';
-export default {
-  template: tpl,
-  props:{
+import tpl from './allMenus.html';
+import './allMenus.scss';
+export default{
+    template:tpl,
+    props:{
       config:{
           type:Array,
           default:[]
@@ -10,7 +10,6 @@ export default {
   },
   data() {
     return {
-      showAllMenus:false
     }
   },
   methods: {
@@ -18,7 +17,7 @@ export default {
         this.$emit('change-title',val)
     },
     changeNav(){
-      this.$emit('show-all-menus',true);
+      this.$emit('show-all-menus',false);
     }
   }
 }
