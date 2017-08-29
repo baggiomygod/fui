@@ -18,6 +18,9 @@ export default{
             if(this.searchForm.searchData===''){
                 this.showClose=false;
             }
+        },
+        back(){ // 返回
+            this.$router.go(-1);
         }
     }
 }

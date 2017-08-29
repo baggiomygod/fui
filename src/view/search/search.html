@@ -1,8 +1,9 @@
+<transition name="slide-right">
 <div class="search-wrap">
     <div class="search-header">
-        <a class="icon-header back">
-          <i class="icon-l icon iconfont">&#xe779;</i>
-        </a>
+            <a class="icon-header back" @click="back">
+                <i class="icon-l icon iconfont">&#xe779;</i>
+            </a>
         <form class="search-form" action="">
             <input type="text" class="search-input" v-model="searchForm.searchData" @focus="fs" @blur="bl" placeholder="请输入搜索关键词" />
             <a class="icon-header close" v-show="showClose">
@@ -18,3 +19,4 @@
         </ul>
     </div>
 </div>
+</transition>

@@ -2,10 +2,10 @@
 	<div id="dices-wrapper" class="dices-main container-wrap">
 		<div class="dices-table" ref="menuWrapper">
 			<ul class="menu-margin-before">
-				<li v-for="(faceStyle,index) in faceStyles" :key="faceStyle" class="dices-li" :class="{active:currentFace==index}" @click.stop="selectedFace($event,index),currentFace=index" :id="[faceStyle.id]">
+				<li v-for="(faceStyle,index) in faceStyles" :key="faceStyle.numFace" class="dices-li" :class="{active:currentFace==index}" @click.stop="selectedFace($event,index),currentFace=index" :id="[faceStyle.id]">
 					<div class="face" :class="faceStyle.numFace">
 						<div class="face-content" :class="[faceStyle.styleContent.justify,faceStyle.styleContent.alignItems]">
-							<span class="pip" v-for="pip in faceStyle.pips" :class="pip.flexName" :key="pip"></span>
+							<span class="pip" v-for="pip in faceStyle.pips" :class="pip.flexName" :key="pip.flexName"></span>
 						</div>
 					</div>
 				</li>
@@ -13,7 +13,7 @@
 		</div>
 		<div class="dices-control" ref="controlWrap">
 			<ul class="controller">
-				<li v-for="(desc,tableIndex) in descriptions" :key="desc">
+				<li v-for="(desc,tableIndex) in descriptions" :key="desc.name">
 					<strong>{{desc.name}}:</strong>
 					<a class="text">{{desc.feature}}</a>
 					<ul class="controller-checkboxs clearfix">
