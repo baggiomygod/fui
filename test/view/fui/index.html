@@ -1,0 +1,19 @@
+<div class="fui-wrap container-wrap">
+  <ul class="fui-list">
+    <li>
+        <router-link to="/fui/zoom">zoom</router-link>
+    </li>
+    <li>
+        <router-link to="/fui/icons">icons</router-link>
+    </li>
+    <li>
+        <router-link to="/fui/tip">tip<i class="note">(下方滑入)</i></router-link>
+    </li>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+  </ul>
+<f-zoom v-show="showZoom"></f-zoom>
+<f-tip v-show="showTip"></f-tip>
+<f-icon v-show="showIcon"></f-icon>
+</div>

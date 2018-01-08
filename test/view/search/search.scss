@@ -1,0 +1,51 @@
+.search-wrap{
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition:transform .3s ease-out;
+    // 过渡
+    &.slide-right-enter,
+    &.slide-right-leave-to{
+        transform:translate(100%,0);
+    }
+
+    .search-header{
+        background-color: #3e98f0;
+        height: 1rem;
+        display: flex;
+        display: -webkit-flex;
+        flex-flow: row nowrap;
+        .search-form{
+            display: flex;
+            display: -webkit-flex;
+            flex-flow: row nowrap;
+            flex-grow:1;
+            .search-input{
+                flex-grow:1;
+                // opacity: 0;
+                background-color:transparent;
+                font-size: .4rem;
+                color: #fff;
+                border: 0;
+                outline:none;
+            }
+            .close{
+                margin-left: 15px;
+                flex-grow:0;
+            }
+        }
+        .back{
+            margin-right: 15px;
+            flex-grow: 0;
+        }
+    }
+
+}
+
+// input placeholder 字体颜色
+input::-webkit-input-placeholder{
+                    color: #fff;
+                }

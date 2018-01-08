@@ -1,0 +1,18 @@
+.fui-wrap{
+  .fui-list{
+    width: 96%;
+    margin: 0 auto;
+    font-size: .5rem;
+    li{
+      border-bottom: 1px solid #e2e2e2;
+      box-shadow: 0px 1px 1px #e2e2e2;
+      padding: 5px;
+      a:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .note{
+    font-size: .1rem;
+  }
+}
