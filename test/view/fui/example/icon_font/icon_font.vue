@@ -1,7 +1,7 @@
 <template>
 <transition name="slide-right">
     <div class="icon-font-warp">
-      <f-close></f-close>
+      <f-close :close-type="'header'"></f-close>
       <div class="icon-list">
       <i class="icon iconfont icon-danxuanfill"></i>
       <i class="icon iconfont icon-danxuan"></i>
@@ -238,8 +238,6 @@
     </transition>
 </template>
 <script>
-import close from '../../../common/close/close';
-
 export default {
   data() {
     return {
@@ -247,9 +245,7 @@ export default {
       dragVal: { x: 0, y: 0, type: "" }
     };
   },
-  components:{
-    'f-close': close
-  },
+  components:{},
   created() {
     this.classMap = [
       // { icon: 'icon-favorite', draggable: false },

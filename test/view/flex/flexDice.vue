@@ -59,29 +59,7 @@ export default {
 					"numFace": "third-face",
 					"styleContent": { "justify": "j-space-between", "alignItems": "" },
 					"pips": [{ "flexName": "" }, { "flexName": "s-center" }, { "flexName": "s-flex-end" }]
-				},
-				{
-					"type": "saizi",
-					"id": "fourface",
-					"numFace": "four-face",
-					"styleContent": { "justify": "j-space-between", "alignItems": "" },
-					"pips": [{ "flexName": "" }, { "flexName": "s-center" }, { "flexName": "s-flex-start" }, { "flexName": "s-flex-end" }]
-				},
-				{
-					"type": "saizi",
-					"id": "fiveface",
-					"numFace": "five-face",
-					"styleContent": { "justify": "flex-justify-flow", "alignItems": "" },
-					"pips": [{ "flexName": "" }, { "flexName": "" }, { "flexName": "" }, { "flexName": "" }, { "flexName": "" }]
-				},
-				{
-					"type": "saizi",
-					"id": "fiveface",
-					"numFace": "five-face",
-					"styleContent": { "justify": "flex-justify-flow-nowrap", "alignItems": "" },
-					"pips": [{ "flexName": "" }, { "flexName": "" }, { "flexName": "" },{ "flexName": "" },{ "flexName": "" },{ "flexName": "" }]
-				},
-
+				}
 			]
 
 		}
@@ -181,8 +159,8 @@ export default {
 				margin: 12px;
 				padding: 4px;
 				background-color: #e7e7e7;
-				width: 1.7rem;
-				height: 1.7rem; // object-fit:contain;
+				width: 1.4rem;
+				height: 1.4rem; // object-fit:contain;
 				// -webkit-object-fit:contain;
 				box-shadow: inset 0 2px white, inset 0 -2px #bbb, inset 2px 0 #d7d7d7, inset -2px 0 #d7d7d7;
 				border-radius: 10%;

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import main from '../main/main';
+import main from '../main';
 
 // 创建一个子类
 const VtipConstructor = Vue.extend(main);

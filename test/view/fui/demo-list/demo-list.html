@@ -1,0 +1,26 @@
+<transition name="slide-right">
+<div class="demo-wrap">
+    <f-close :close-type="'header'"></f-close>
+    <ul class="fui-list">
+      <li>
+          <router-link class="item-name" to="/fui/demo-list/zoom">zoom</router-link>
+          <i class="view-icon icon iconfont icon-xiangyou1"></i>
+      </li>
+      <li>
+          <router-link class="item-name" to="/fui/demo-list/icons">icons</router-link>
+          <i class="view-icon icon iconfont icon-xiangyou1"></i>
+
+      </li>
+      <li>
+          <router-link class="item-name" to="/fui/demo-list/tip">tip</router-link>
+          <i class="view-icon icon iconfont icon-xiangxia2"></i>
+      </li>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </ul>
+  <f-zoom v-show="showZoom"></f-zoom>
+  <f-tip v-show="showTip"></f-tip>
+  <f-icon v-show="showIcon"></f-icon>
+  </div>
+</transition>

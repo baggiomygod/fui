@@ -4,14 +4,14 @@
 export default (el, binding, vnode) => {
   let zoomTarget = el;
   let ctrlDiv = zoomTarget.querySelector('.zoom-ctrl');
-  ctrlDiv.onmousedown = function(e) {
+  ctrlDiv.onmousedown = function (e) {
     // 阻止时间冒泡
     e.stopPropagation();
     let width = zoomTarget.clientWidth;
     let height = zoomTarget.clientHeight;
     let disX = e.clientX;
     let disY = e.clientY;
-    document.onmousemove = function(e) {
+    document.onmousemove = function (e) {
       // 阻止时间冒泡
       e.stopPropagation();
       let changeWidth = e.clientX - disX + width;

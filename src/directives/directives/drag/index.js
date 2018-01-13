@@ -7,8 +7,14 @@ import Draggable from './drag';
 	componentUpdated: 指令所在组件的VNode及VNode全部更新后调用
 	unbind:只调用一次，指令与元素解绑时调用
 */
-module.exports = (Vue) => {
-	Vue.directive('drag', {
-		bind: Draggable
-	});
+// module.exports = (Vue) => {
+// 	Vue.directive('drag', {
+// 		bind: Draggable
+// 	});
+// };
+
+export default (Vue) => {
+  Vue.directive('drag', {
+    bind: Draggable
+  });
 };

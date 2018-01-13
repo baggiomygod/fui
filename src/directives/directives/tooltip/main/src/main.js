@@ -2,7 +2,7 @@ import tpl from './main.html';
 import './main.scss';
 import {
   getContainer
-} from '../util';
+} from '../../util';
 export default {
   template: tpl,
   props: {

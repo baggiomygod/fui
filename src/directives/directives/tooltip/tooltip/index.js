@@ -1,6 +1,6 @@
 import Tooltip from './tooltip';
 
-module.exports = (Vue) => {
+export default (Vue) => {
   Vue.directive('simple-tip', {
     bind: Tooltip
   });

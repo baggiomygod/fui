@@ -1,3 +1,4 @@
+<template>
 <div class="slot">
   <h3>slot</h3>
   <child-slot>
@@ -8,3 +9,19 @@
     <p>没有设置name的被插入到没有slot属性的slot中</p>
   </child-slot>
 </div>
+
+</template>
+<script>
+// import tpl from './slot.html';
+import childSlot from './child.vue';
+export default {
+  // template: tpl,
+  components: {
+    'child-slot':childSlot
+  }
+}
+
+</script>
+<style lang="scss">
+
+</style>

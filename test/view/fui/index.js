@@ -1,38 +1,33 @@
-import tpl from './index.html'
-import zoom from './example/zoom/zoom';
-import icon from './example/icon_font/icon_font';
-import tooltip from './example/tip/tip';
-
+import tpl from './index.html';
 import './index.scss';
-export default{
+
+export default {
   template: tpl,
-  data(){
+  data () {
     return {
       showZoom: false,
       showTip: false,
       showIcon: false,
-    }
+      logoUrl: 'static/images/logo/fui.png',
+      gitLogoUrl: 'static/images/logo/github.png'
+    };
   },
-  components:{
-    'f-zoom': zoom,
-    'f-icon': icon,
-    'f-tip': tooltip
-  },
+  components: {},
   methods: {
-    showExam(type) {
-      switch(type) {
+    showExam (type) {
+      switch (type) {
         case 'zoom':
           this.showZoom = true;
-        break;
+          break;
         case 'icon':
-        this.showIcon = true;
-        break;
+          this.showIcon = true;
+          break;
         case 'tip':
-        this.showTip = true;
-        break;
+          this.showTip = true;
+          break;
         default:
-        break;
+          break;
       }
     }
   }
-}
+};

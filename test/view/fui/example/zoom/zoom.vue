@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-right">
       <div class="zoom-warp">
-        <f-close></f-close>
+        <f-close :close-type="'header'"></f-close>
         <div class="icon-tip">
             <span>终端:{{dragVal.type}}</span>
             <span>x:{{dragVal.x}},y:{{dragVal.y}}</span>
@@ -16,7 +16,6 @@
   </transition>
 </template>
 <script>
-import close from '../../../common/close/close';
 export default {
   data() {
     return {
@@ -24,9 +23,7 @@ export default {
       dragVal: { x: 0, y: 0, type: '' }
     };
   },
-  components:{
-    'f-close': close
-  },
+  components:{},
   created() {
     this.classMap = [
       // { icon: 'icon-thumb_up', draggable: false },

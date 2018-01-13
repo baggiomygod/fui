@@ -16,12 +16,12 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 // 获取json数据
-var flexData=require('../data/flex.json');
+var flexData=require('../mock/flex.json');
 var flexDesc=flexData.description;
 var flexCtrl=flexData.controller;
 
 //d3.json
-var d3Data=require('../data/d3.json');
+var d3Data=require('../mock/d3.json');
 
 // 设置路由
 var apiRouters=express.Router();

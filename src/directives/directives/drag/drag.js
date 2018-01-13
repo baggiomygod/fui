@@ -56,7 +56,7 @@ export default (el, binding, vnode) => {
  * 返回事件对象
  * @param {*} e
  */
-function touchEvent(e) {
+function touchEvent (e) {
   let touchs = M_PC ? e : e.changedTouches[0];
   return touchs;
 }

@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import portal from './view/portal/portal';
-export default{
+// import Components from 'vue-class-component';
+// @Components({})
+export default {
   name: 'app',
   components:{
     'f-portal': portal

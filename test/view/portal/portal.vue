@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <v-header :title="propsHeader"></v-header>
-    <scroll-menus v-if="!showAllMenus" :config="menusConfig" @change-title="changeTitle" @show-all-menus="changeMenus"></scroll-menus>
-    <all-menus v-else :config="menusConfig" @change-title="changeTitle" @show-all-menus="changeMenus"></all-menus>
+    <f-scroll-menus v-if="!showAllMenus"
+                    :config="menusConfig"
+                    @change-title="changeTitle"
+                    @show-all-menus="changeMenus"></f-scroll-menus>
+    <f-all-menus v-else
+                :config="menusConfig"
+                @change-title="changeTitle"
+                @show-all-menus="changeMenus"></f-all-menus>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -11,16 +17,12 @@
 
 <script>
 import header from '../header/header';
-import scrollMenus from '../common/scrollMenus/scrollMenus';
-import allMenus from '../common/allMenus/allMenus';
 
 const ERR_OK = 0;
 export default {
   name: 'app',
   components: {
     "v-header": header,
-    "scroll-menus": scrollMenus,
-    "all-menus":allMenus,
   },
   data() {
     return {
