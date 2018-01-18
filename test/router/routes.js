@@ -10,6 +10,7 @@ import zoom from 'view/fui/example/zoom/zoom';
 import icons from 'view/fui/example/icon_font/icon_font';
 import tip from 'view/fui/example/tip/tip';
 import demoList from 'view/fui/demo-list/demo-list';
+import webNotes from 'view/web-notes';
 // const flex = () => require('view/flex/flexDice');
 // const animate = () => require('view/animate/animation');
 // const css3d = () => require('view/3d/css3d');
@@ -25,6 +26,7 @@ let routes = [
   { path: '/3D', component: css3d },
   { path: '/vue2', component: vue2Test },
   { path: '/pwa', component: pwa },
+  { path: '/web-notes', component: webNotes },
   { path: '/search', component: search },
   {
     path: '/fui', component: fui, children: [

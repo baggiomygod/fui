@@ -8,8 +8,8 @@ export default {
       showZoom: false,
       showTip: false,
       showIcon: false,
-      logoUrl: 'static/images/logo/fui.png',
-      gitLogoUrl: 'static/images/logo/github.png'
+      logoUrl: '/static/images/logo/fui.png',
+      gitLogoUrl: '/static/images/logo/github.png'
     };
   },
   components: {},

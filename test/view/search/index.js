@@ -1,4 +1,2 @@
 import search from './src/search';
-export default {
-  search
-};
+module.exports = search;

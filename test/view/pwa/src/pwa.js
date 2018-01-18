@@ -1,5 +1,5 @@
-// import tpl from './pwa.html';
+import tpl from './pwa.html';
 
 export default {
-  // template: tpl
+  template: tpl
 };

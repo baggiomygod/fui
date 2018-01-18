@@ -1,4 +1,5 @@
 import main from './src/main';
-export default {
-  main
-}
+module.exports = main;
+// export default {
+  // main
+// }

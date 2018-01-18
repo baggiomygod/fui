@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <v-header :title="propsHeader"></v-header>
     <f-scroll-menus v-if="!showAllMenus"
                     :config="menusConfig"
@@ -7,6 +7,7 @@
                     @show-all-menus="changeMenus"></f-scroll-menus>
     <f-all-menus v-else
                 :config="menusConfig"
+                :menus-status="showAllMenus"
                 @change-title="changeTitle"
                 @show-all-menus="changeMenus"></f-all-menus>
     <keep-alive>
@@ -31,6 +32,7 @@ export default {
         {menu_name:'flex',url:'/flex'},
         {menu_name:'d3.js',url:'/d3js'},
         {menu_name:'vue2',url:'/vue2'},
+        {menu_name:'notes',url:'/web-notes'},
         {menu_name:'animate',url:'/anmiation'},
         {menu_name:'3D',url:'/3D'},
         {menu_name:'pwa',url:'/pwa'},
@@ -47,7 +49,7 @@ export default {
       this.propsHeader = event;
     },
     changeMenus(event){
-      this.showAllMenus=event;
+      this.showAllMenus = event;
     }
   }
 }

@@ -39,7 +39,7 @@ export default {
         background-color: #3e98f0;
         width: 100%;
         .close{
-          color: #fffe98f0;
+          color: #fff;
         }
       }
     }

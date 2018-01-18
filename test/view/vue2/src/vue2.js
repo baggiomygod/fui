@@ -4,6 +4,8 @@ import vTransitionFade from '../components/transitions/fade';
 import vSlideFade from '../components/transitions/slideFade';
 import vBounce from '../components/transitions/bounce';
 import vMove from '../components/transitions/move';
+import vFor from '../components/v-for/v-for';
+import vSet from '../components/vue-set/vue-set';
 import './vue2.scss';
 export default {
   template: tpl,
@@ -13,6 +15,8 @@ export default {
     vTransitionFade,
     vSlideFade,
     vBounce,
-    vMove
+    vMove,
+    vFor,
+    vSet
   }
 };

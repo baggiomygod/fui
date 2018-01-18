@@ -1,4 +1,6 @@
 import tpl from './all-menus.html';
+import navTitle from './components/nav-title';
+import navList from './components/nav-list';
 import './all-menus.scss';
 export default {
   template: tpl,
@@ -6,10 +8,18 @@ export default {
     config: {
       type: Array,
       default: []
+    },
+    menusStatus:{
+      type:Boolean,
+      default:false
     }
   },
   data () {
     return {}
+  },
+  components:{
+    navTitle,
+    navList
   },
   methods: {
     changeHeader (val) {
